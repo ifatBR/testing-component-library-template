@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-// import "./Button.scss";
 
 export interface ButtonProps {
   label: string;
@@ -15,9 +14,6 @@ const StyledButton = styled.button`
   border-radius: 3px;
 `;
 
-// const Button = (props: ButtonProps) => {
-//   return <button>{props.label}</button>;
-// };
 const Button = (props: ButtonProps) => {
   return <StyledButton>{props.label}</StyledButton>;
 };

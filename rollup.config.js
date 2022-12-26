@@ -8,6 +8,10 @@ const packageJson = require("./package.json");
 
 export default [
   {
+    external: [ 
+      'react',//!This is important for the hooks bug
+      'react-dom'//!This is important for the hooks bug
+    ],
     input: "src/index.ts",
     output: [
       {
@@ -32,6 +36,8 @@ export default [
     input: "dist/esm/types/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts()],
-    external: [/\.(css|less|scss)$/],
+    external: [
+      /\.(css|less|scss)$/
+    ],
   },
 ];
