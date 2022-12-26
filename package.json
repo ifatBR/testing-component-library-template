@@ -1,5 +1,5 @@
 {
-  "name": "@ifatBR/template-react-component-library",
+  "name": "@ifatBR/testing-component-library-template",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/ifatBR"
   },

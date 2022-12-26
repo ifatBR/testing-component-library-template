@@ -294,7 +294,7 @@ The final step before we can run our first rollup is to define the values of "ma
 `package.json`
 ```json
 {
-  "name": "template-react-component-library",
+  "name": "testing-component-library-template",
   "version": "0.0.1",
   "description": "A simple template for a custom React component library",
   "scripts": {
@@ -366,9 +366,9 @@ _(If you received an error make sure to read it closely to try and identify the 
 
 Now that we've created our component library, we need a way to allow ourselves (or others) to download and install it.  We will be publishing our library via NPM through hosting on Github.  First before anything else we need to create a repository for our library.  
 
-Create a new repository on Github.  I have titled mine `template-react-component-library`.  Then follow the steps to initialize your project as a git project, and push to your new repository.
+Create a new repository on Github.  I have titled mine `testing-component-library-template`.  Then follow the steps to initialize your project as a git project, and push to your new repository.
 
-Log into Github and create a new repository called whatever you like.  For this example I've titled it `template-react-component-library` and it will be available for everyone to clone and use publicly.  You can choose to make your library private if you like, methods described in this tutorial will work for private packages as well (in case you are making a library for your company for example).
+Log into Github and create a new repository called whatever you like.  For this example I've titled it `testing-component-library-template` and it will be available for everyone to clone and use publicly.  You can choose to make your library private if you like, methods described in this tutorial will work for private packages as well (in case you are making a library for your company for example).
 
 Once the repository is created we need to initialize git within our project locally.  Run the following command:
 
@@ -401,7 +401,7 @@ This repository that you have created is the one you will clone & edit when you 
 }
 ```
 
-You will be updating the field "name" value and adding a new field called "publishConfig".  Note the values above in caps are meant to be replaced with your own values.  For example my "name" field value would be `@alexeagleson/template-react-component-library`.  Notice the "packageConfig" also has your Github account name in it as well, but that value does not lead with the @ symbol.  
+You will be updating the field "name" value and adding a new field called "publishConfig".  Note the values above in caps are meant to be replaced with your own values.  For example my "name" field value would be `@alexeagleson/testing-component-library-template`.  Notice the "packageConfig" also has your Github account name in it as well, but that value does not lead with the @ symbol.  
 
 Now that we have configured out project, we need to configure our local install of _NPM_ itself to be authorized to publish to your Github account.  To do this we use a `.npmrc` file.  
 
@@ -431,7 +431,7 @@ Click _**Generate new token**_.  Give it a name that suits the project you are b
 
 The most important thing is to click the `write:packages` access value.  This will give your token permission to read & write packages to your Github account, which is wht we need.  
 
-![Generate new token](https://res.cloudinary.com/dqse2txyi/image/upload/v1637028886/template-react-component-library/accesstoken_hl9kr3.png)
+![Generate new token](https://res.cloudinary.com/dqse2txyi/image/upload/v1637028886/testing-component-library-template/accesstoken_hl9kr3.png)
 
 Once you are done you can click to create the token.  Github will **ONLY SHOW YOU THE TOKEN ONCE**.  When you close/refresh the page it will be gone, so make sure to copy it to a secure location (perhaps a password manager if you use one).
 
@@ -487,7 +487,7 @@ Now comes the test for our library.  From the root directory of your new `my-app
 npm install @YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME
 ```
 
-So for my project for example its: `npm install @alexeagleson/template-react-component-library`
+So for my project for example its: `npm install @alexeagleson/testing-component-library-template`
 
 Presuming your tokens and configuration are set up properly, everything will install correctly _(if there are any issues, revisit the example for the `~/.npmrc` config.)_
 
@@ -502,7 +502,7 @@ Lets add it!  The simplest example to update `src/App.tsx` is:
 `src/App.tsx`
 ```tsx
 import React from "react";
-import { Button } from "@alexeagleson/template-react-component-library";
+import { Button } from "@alexeagleson/testing-component-library-template";
 
 function App() {
   return <Button label="Hello world!"/>;
@@ -640,7 +640,7 @@ npm run start
 
 And you'll be treated to a giant button component from our library that now supports bundling CSS!
 
-![Large Button](https://res.cloudinary.com/dqse2txyi/image/upload/v1637028364/template-react-component-library/helloworldbuttonbig_lyapwq.png)
+![Large Button](https://res.cloudinary.com/dqse2txyi/image/upload/v1637028364/testing-component-library-template/helloworldbuttonbig_lyapwq.png)
 
 
 ## Optimizing
@@ -838,7 +838,7 @@ npm run test
 
 And you will be treated to a successful test!
 
-![Jest test](https://res.cloudinary.com/dqse2txyi/image/upload/v1637096794/template-react-component-library/jest_rw30ou.png)
+![Jest test](https://res.cloudinary.com/dqse2txyi/image/upload/v1637096794/testing-component-library-template/jest_rw30ou.png)
 
 ## Adding Storybook
 
@@ -915,7 +915,7 @@ It can be tricky to troubleshoot issues related to both overlapping and missing 
 
 If all goes well you will be greeted with a friendly interface that lets you navigate through the example components as well as your own custom button in real time.  Click between them to check out the different states that you have created.
 
-![Storybook example](https://res.cloudinary.com/dqse2txyi/image/upload/v1637099177/template-react-component-library/storybook_dxv3qb.png)
+![Storybook example](https://res.cloudinary.com/dqse2txyi/image/upload/v1637099177/testing-component-library-template/storybook_dxv3qb.png)
 
 There is plenty more to learn about Storybook, make sure to read through the [documentation](https://storybook.js.org/docs/react/get-started/introduction).
 
@@ -981,5 +981,5 @@ Please check some of my other learning tutorials.  Feel free to leave a comment 
 
 ---
 
-For more tutorials like this, follow me <a href="https://twitter.com/eagleson_alex?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@eagleson_alex</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> on Twitter# template-react-component-library
-# template-react-component-library
+For more tutorials like this, follow me <a href="https://twitter.com/eagleson_alex?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@eagleson_alex</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> on Twitter# testing-component-library-template
+# testing-component-library-template
