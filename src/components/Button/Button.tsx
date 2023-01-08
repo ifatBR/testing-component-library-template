@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+// import "./Button.scss";
 
 export interface ButtonProps {
-  label: string;
+  label?: string;
+  onClick?: () => void;
 }
 
 const StyledButton = styled.button`
@@ -15,7 +17,9 @@ const StyledButton = styled.button`
 `;
 
 const Button = (props: ButtonProps) => {
-  return <StyledButton>{props.label}</StyledButton>;
+  const [text, setText] = useState("remove me");
+  props.label && props.label !== text && setText(props.label);
+  return <StyledButton onClick={() => props.onClick && props.onClick()}>{text}</StyledButton>;
 };
 
 export default Button;

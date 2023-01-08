@@ -1,3 +1,7 @@
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import * as reactIs from 'react-is';
+import * as propTypes from 'prop-types';
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
@@ -9,8 +13,8 @@ const packageJson = require("./package.json");
 export default [
   {
     external: [ 
-      'react',//!This is important for the hooks bug
-      'react-dom'//!This is important for the hooks bug
+      'react',//!This is important so the package uses the react of the repo that uses it
+      'react-dom'//!This is important so the package uses the react of the repo that uses it
     ],
     input: "src/index.ts",
     output: [
