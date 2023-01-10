@@ -9,13 +9,13 @@ export interface IAssetCardProps {
   asset: IAsset;
   isFolder?: boolean;
   searchTerm?: string;
-  userDownloadIcon?: string;
+  UserDownloadIcon?: string;
   onAssetClick?(asset: IAsset): void;
   onDownload?(id: string): void;
 }
 
 const AssetCard = (props: IAssetCardProps) => {
-  const { asset, isFolder, searchTerm, userDownloadIcon, onAssetClick, onDownload } = props;
+  const { asset, isFolder, searchTerm, UserDownloadIcon, onAssetClick, onDownload } = props;
 
   const handleAssetClick = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     e.stopPropagation();
@@ -35,11 +35,11 @@ const AssetCard = (props: IAssetCardProps) => {
       />
       <AssetCardHoverStyled onClick={e => e.stopPropagation()} isFolder={isFolder}>
           <StyledAssetCardTitleContainer>
-              <HighlightedTitle title={asset.name} highlight={searchTerm}/>
+              <HighlightedTitle title={asset?.name || ""} highlight={searchTerm}/>
           </StyledAssetCardTitleContainer>
           <Icon
-              icon={userDownloadIcon || IconDownload}
-              onIconClick={handleDownload} />
+              Icon={UserDownloadIcon || IconDownload}
+              onIconClicked={handleDownload} />
       </AssetCardHoverStyled>
     </AssetCardStyled>
   );

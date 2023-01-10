@@ -1,29 +1,25 @@
-import React, { FunctionComponent } from 'react';
-import { IconStyled } from './styled';
-import { DEFAULT_ICON_SIZE } from '../../utils/constants';
+import React from 'react';
+import { TOGGLE_ICON_SIZE } from '../../utils/constants';
+import { IIcon } from '../../utils/types';
+import { IconContainerStyled } from './styled';
 
 export interface IIconProps {
-  icon: string;
-  // icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-  // children: React.ReactNode;
-  width?: number;
-  height?: number;
-  iconStyle?: {[key:string]: string}
-  onIconClick?(): void;
+  Icon : string;
+  toggleIconProps?: IIcon;
+  onIconClicked?(element: any): void;
 }
 
 const Icon = (props: IIconProps) => {
-  const { width, height, icon, iconStyle, onIconClick } = props;
-
+  const { Icon, toggleIconProps, onIconClicked} = props;
   return (
-      <IconStyled 
-        src={icon}
-        width={width|| DEFAULT_ICON_SIZE}
-        height={height|| DEFAULT_ICON_SIZE}
-        iconStyle={iconStyle}
-        onClick={onIconClick}
-      />
-      // <div><props.icon/></div>
+    <IconContainerStyled 
+      onClick={onIconClicked}
+      height={toggleIconProps?.height} 
+      width={toggleIconProps?.width}
+      iconFillColor={toggleIconProps?.fillColor}
+    >
+    <Icon />
+  </IconContainerStyled>
   );
 };
 

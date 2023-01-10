@@ -1,7 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import NavigationTree from './NavigationTree';
-import IconChat from '../../assets/icons/chat.svg';
 
 export default {
   title: 'BrowzwearComponentLibrary/NavigationTree',
@@ -69,9 +68,10 @@ export const BasicNavigationTree = Template.bind({});
 BasicNavigationTree.args = {
   treeData,
   currentNode,
-  onNodeClick: (node) => console.log('click'),
+  onNodeClick: (node) => console.log('double click'),
   onNodeToggleClick: () => console.log('toggle'),
-  treeNodeNameStyle: {color: 'darkGrey'},
-  treeNodeNameActiveStyle: {fontWeight: 'bold', color: 'white', borderRadius: '3px', backgroundColor: 'grey'},
-  treeNodeMarkedStyle: {backgroundColor: 'lightBlue'}
+  treeNodeNameStyle: {color: 'darkGrey', border: '1px solid transparent'},
+  treeNodeNameActiveStyle: {fontWeight: 'bold', color: 'cadetBlue', borderRadius: '3px', borderColor: '#9fc4c6'},
+  treeNodeMarkedStyle: {backgroundColor: '#fff0b3'},
+  toggleIconProps: {fillColor: "cadetBlue", height: 12, width: 12},
 };

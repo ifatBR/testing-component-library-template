@@ -58,3 +58,9 @@ export interface INodeState {
     loadMoreAssets(id: string): IAsset[],
     initAssets(id: string): void
 }
+
+export interface IIcon {
+    fillColor?: string;
+    height?: number;
+    width?: number;
+}

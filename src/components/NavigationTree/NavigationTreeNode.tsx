@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { TOGGLE_ICON_SIZE } from '../../utils/constants';
-import { ITreeNode } from '../../utils/types';
-import Icon from '../Icon/Icon';
-import { TreeNodeContainerStyled, TreeNodeNameStyled, TreeNodeToggleStyled } from './styled';
+import { IIcon, ITreeNode } from '../../utils/types';
+import { TreeNodeContainerStyled, TreeNodeNameStyled } from './styled';
 import IconToggleClosed from '../../assets/icons/toggle-closed.svg';
 import IconToggleOpen from '../../assets/icons/toggle-open.svg';
-// import {ReactComponent as IconToggleClosed} from '../../assets/icons/toggle-closed.svg';
-// import {ReactComponent as IconToggleOpen} from '../../assets/icons/toggle-open.svg';
+import Icon from '../Icon';
 
 export interface INavigationTreeNodeProps {
   treeNode: ITreeNode;
@@ -18,8 +16,11 @@ export interface INavigationTreeNodeProps {
   treeNodeNameStyle?: {[key:string]:string};
   treeNodeNameActiveStyle?: {[key:string]:string};
   level?: number;
+  toggleIconProps?: IIcon;
+  UserIconToggleOpen?: string;
+  UserIconToggleClosed?: string;
   onNodeClick(e:React.MouseEvent<HTMLDivElement>, node: ITreeNode): void;
-  onNodeToggleClick(node: ITreeNode): void;
+  onNodeToggleClick?(node: ITreeNode): void;
 }
 
 const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
@@ -33,6 +34,9 @@ const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
     treeNodeNameStyle,
     treeNodeNameActiveStyle,
     level,
+    toggleIconProps,
+    UserIconToggleOpen,
+    UserIconToggleClosed,
     onNodeClick,
     onNodeToggleClick
   } = props;
@@ -46,37 +50,26 @@ const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
   }, [children]);
 
   const onToggleClick = (node: ITreeNode) => {
-    setIsOpen(!isOpen);
     if (node.children) return;
-    onNodeToggleClick(node)
+    setIsOpen(!isOpen);
+    onNodeToggleClick?.(node);
   };
-  // console.log('IconToggleClosed', IconToggleClosed);
-//   const StyledIcon = styled(IconToggleClosed)`
-//   width: 500px;
-//   height: 200px;
-//   fill: palevioletred;
-// `;
-//   console.log('StyledIcon', StyledIcon);
+
   const renderTree = () => {
     return children?.map((child: ITreeNode) => {
         return (
             <NavigationTreeNode
+                {...props}
                 key={child._id}
                 treeNode={child}
-                currentNodeId={currentNodeId}
-                highlightedNodeId={highlightedNodeId}
                 level={currentLevel+1}
-                onNodeClick={(e) => onNodeClick(e, child)}
-                onNodeToggleClick={onNodeToggleClick}
-                treeNodeStyle={treeNodeStyle}
-                treeNodeMarkedStyle={treeNodeMarkedStyle}
-                treeNodeNameStyle={treeNodeNameStyle}
-                treeNodeNameActiveStyle={treeNodeNameActiveStyle}
             />
         );
     });
   };
 
+  const iconOpen = UserIconToggleOpen ? UserIconToggleOpen : IconToggleOpen;
+  const iconClosed = UserIconToggleClosed ? UserIconToggleClosed : IconToggleClosed;
   return ( 
     <>
       <TreeNodeContainerStyled
@@ -86,18 +79,26 @@ const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
         onClick={(e) => onNodeClick(e, treeNode)}
         treeNodeStyle={treeNodeStyle}
         treeNodeMarkedStyle={treeNodeMarkedStyle}
-        >
-          {hasChildren && (
-            <TreeNodeToggleStyled onClick={() => onToggleClick(treeNode)}>
-              <Icon icon={isOpen? IconToggleOpen : IconToggleClosed} />
-              <IconToggleClosed/>
-            </TreeNodeToggleStyled>
-          )}
-          <TreeNodeNameStyled
-            isSelected={nodeId === currentNodeId}
-            treeNodeNameStyle={treeNodeNameStyle}
-            treeNodeNameActiveStyle={treeNodeNameActiveStyle}
-            >{name}</TreeNodeNameStyled>
+      >
+        {hasChildren && (
+          <Icon 
+            Icon={isOpen ? iconOpen : iconClosed} 
+            toggleIconProps={
+              {
+                height: TOGGLE_ICON_SIZE.HEIGHT,
+                width: TOGGLE_ICON_SIZE.WIDTH,
+                //If toggleIconProps contains height and width, they will override the ones we use here
+                ...toggleIconProps
+              }
+            }
+            onIconClicked={onToggleClick}
+          />
+        )}
+        <TreeNodeNameStyled
+          isSelected={nodeId === currentNodeId}
+          treeNodeNameStyle={treeNodeNameStyle}
+          treeNodeNameActiveStyle={treeNodeNameActiveStyle}
+          >{name}</TreeNodeNameStyled>
       </TreeNodeContainerStyled>
       {isOpen && children && renderTree()}
     </>

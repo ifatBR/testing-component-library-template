@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Icon from './Icon';
-import IconToggleClosed from '../../assets/icons/toggle-closed.svg';
+import IconToggleOpen from '../../assets/icons/toggle-open.svg';
 
 export default {
   title: 'BrowzwearComponentLibrary/Icon',
@@ -10,9 +10,8 @@ export default {
 
 const Template: ComponentStory<typeof Icon> = (args) => <Icon {...args} />;
 
+//Icon stories
 export const BasicIcon = Template.bind({});
 BasicIcon.args = {
-  icon: IconToggleClosed,
-  width: 15,
-  height: 15
+  Icon: IconToggleOpen
 };

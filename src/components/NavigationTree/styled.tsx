@@ -13,6 +13,7 @@ type TreeNodeContainerStyledProps = {
 
 export const TreeNodeContainerStyled = styled.div<TreeNodeContainerStyledProps>`
     display: flex;    
+    align-items: center;
     padding-left: ${props => props.level && `${props.level * (props.nodeIndentation || 15)}px`};
     ${props => props.treeNodeStyle}
     ${props => props.isMarked && props.treeNodeMarkedStyle}
@@ -25,10 +26,4 @@ export const TreeNodeNameStyled = styled.button<TreeNodeContainerStyledProps>`
     background: none;
     ${props => props.treeNodeNameStyle}
     ${props => props.isSelected && props.treeNodeNameActiveStyle}
-`;
-
-export const TreeNodeToggleStyled = styled.div`
-    width: fit-content;
-    margin-right: 5px;
-    cursor: pointer;
 `;
