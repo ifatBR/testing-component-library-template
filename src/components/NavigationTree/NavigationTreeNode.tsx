@@ -15,12 +15,13 @@ export interface INavigationTreeNodeProps {
   treeNodeMarkedStyle?: {[key:string]:string};
   treeNodeNameStyle?: {[key:string]:string};
   treeNodeNameActiveStyle?: {[key:string]:string};
+  toggleIconStyle?: {[key:string]:string};
   level?: number;
   toggleIconProps?: IIcon;
   UserIconToggleOpen?: string;
   UserIconToggleClosed?: string;
   onNodeClick(e:React.MouseEvent<HTMLDivElement>, node: ITreeNode): void;
-  onNodeToggleClick?(node: ITreeNode): void;
+  onNodeToggle?(node: ITreeNode): void;
 }
 
 const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
@@ -33,12 +34,13 @@ const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
     treeNodeMarkedStyle,
     treeNodeNameStyle,
     treeNodeNameActiveStyle,
+    toggleIconStyle,
     level,
     toggleIconProps,
     UserIconToggleOpen,
     UserIconToggleClosed,
     onNodeClick,
-    onNodeToggleClick
+    onNodeToggle
   } = props;
 
   const { children, _id: nodeId, has_children: hasChildren, name } = treeNode;
@@ -49,10 +51,10 @@ const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
     setIsOpen(open);
   }, [children]);
 
-  const onToggleClick = (node: ITreeNode) => {
+  const onToggle = (node: ITreeNode) => {
     if (node.children) return;
     setIsOpen(!isOpen);
-    onNodeToggleClick?.(node);
+    onNodeToggle?.(treeNode);
   };
 
   const renderTree = () => {
@@ -83,7 +85,7 @@ const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
         {hasChildren && (
           <Icon 
             Icon={isOpen ? iconOpen : iconClosed} 
-            toggleIconProps={
+            iconProps={
               {
                 height: TOGGLE_ICON_SIZE.HEIGHT,
                 width: TOGGLE_ICON_SIZE.WIDTH,
@@ -91,7 +93,8 @@ const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
                 ...toggleIconProps
               }
             }
-            onIconClicked={onToggleClick}
+            iconStyle={toggleIconStyle}
+            onIconClicked={onToggle}
           />
         )}
         <TreeNodeNameStyled

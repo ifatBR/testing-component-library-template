@@ -68,10 +68,17 @@ export const BasicNavigationTree = Template.bind({});
 BasicNavigationTree.args = {
   treeData,
   currentNode,
-  onNodeClick: (node) => console.log('double click'),
-  onNodeToggleClick: () => console.log('toggle'),
+  onNodeClick: (node) => console.log('double click', node.name),
+  onNodeToggleClick: (node) => console.log('toggle', node.name),
   treeNodeNameStyle: {color: 'darkGrey', border: '1px solid transparent'},
   treeNodeNameActiveStyle: {fontWeight: 'bold', color: 'cadetBlue', borderRadius: '3px', borderColor: '#9fc4c6'},
   treeNodeMarkedStyle: {backgroundColor: '#fff0b3'},
   toggleIconProps: {fillColor: "cadetBlue", height: 12, width: 12},
+  toggleIconStyle: {
+    display: 'flex',    
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: '5px',
+    cursor: 'pointer',
+  }
 };

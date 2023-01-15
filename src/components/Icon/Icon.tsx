@@ -5,18 +5,22 @@ import { IconContainerStyled } from './styled';
 
 export interface IIconProps {
   Icon : string;
-  toggleIconProps?: IIcon;
+  className?: string;
+  iconProps?: IIcon;
+  iconStyle?: {[key: string]: string},
   onIconClicked?(element: any): void;
 }
 
 const Icon = (props: IIconProps) => {
-  const { Icon, toggleIconProps, onIconClicked} = props;
+  const { Icon, className, iconProps, iconStyle, onIconClicked} = props;
   return (
     <IconContainerStyled 
+      className={className}
       onClick={onIconClicked}
-      height={toggleIconProps?.height} 
-      width={toggleIconProps?.width}
-      iconFillColor={toggleIconProps?.fillColor}
+      height={iconProps?.height} 
+      width={iconProps?.width}
+      iconFillColor={iconProps?.fillColor}
+      iconStyle={iconStyle}
     >
     <Icon />
   </IconContainerStyled>

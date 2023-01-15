@@ -34,14 +34,15 @@ Basic${name}.args = {
 
 // component.test.tsx
 exports.test = name => `import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { composeStories } from '@storybook/testing-react';
+import * as stories from './${name}.stories'; // import all stories from the stories file
 
-import ${name} from './${name}';
+const {  Basic${name} } = composeStories(stories);
 
-describe('${name} Component', () => {
-  test('Render the ${name} component', () => {
-    render(<${name} />);
-  });
+test('renders Basic${name} component story with default args', () => {
+  const basicElement = render(< Basic${name} />);
+  expect(basicElement).not.toBeNull();
 });
 `;
 

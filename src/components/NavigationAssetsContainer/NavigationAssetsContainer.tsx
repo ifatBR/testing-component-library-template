@@ -5,23 +5,45 @@ import Icon, { IIconProps } from '../Icon/Icon';
 import { AssetsContainerStyled } from './styled';
 
 export interface INavigationAssetsContainerProps {
-  currentNode: ITreeNode,
   nodeAssets?: IAsset[],
-  currentNodeState: INodeState,
-  // nodeFolders: [],
-  folderIcon?: IIconProps
+  folderIcon?: IIconProps,
+  cardStyleAsset?: {[key:string]:string};
+  cardStyleFolder?: {[key:string]:string};
+  navigationContainerStyle?: {[key:string]:string}; 
+  cardImageStyle?: {[key:string]:string}; 
+  titleStyle?: {[key:string]:string}; 
+  onAssetClick?(asset: IAsset): void;
+  onDownload?(id: string): void;
 }
 
 const NavigationAssetsContainer = (props: INavigationAssetsContainerProps) => {
   const {
-    currentNode,
     nodeAssets,
-    folderIcon
+    cardStyleAsset,
+    cardStyleFolder,
+    navigationContainerStyle,
+    cardImageStyle,
+    titleStyle,
+    onAssetClick,
+    onDownload
   } = props;
 
   return (
-      <AssetsContainerStyled>
-        {nodeAssets?.map((asset: IAsset) => <AssetCard asset={asset}/>)}
+      <AssetsContainerStyled navigationContainerStyle={navigationContainerStyle}>
+        {nodeAssets?.map((asset: IAsset) => {
+          return (
+            <AssetCard 
+              key={asset.id}
+              asset={asset}
+              cardStyleAsset={cardStyleAsset}
+              cardStyleFolder={cardStyleFolder}
+              cardImageStyle={cardImageStyle}
+              titleStyle={titleStyle}
+              onAssetClick={onAssetClick}
+              onDownload={onDownload}
+            />)
+          }
+        )}
       </AssetsContainerStyled>
   );
 };

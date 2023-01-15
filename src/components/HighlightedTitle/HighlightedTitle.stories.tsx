@@ -12,5 +12,6 @@ const Template: ComponentStory<typeof HighlightedTitle> = (args) => <Highlighted
 //HighlightedTitle stories
 export const BasicHighlightedTitle = Template.bind({});
 BasicHighlightedTitle.args = {
-  //Here you can use the component props
+  title:"Highlight part of this text",
+  highlight:"part o"
 };

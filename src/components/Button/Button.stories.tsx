@@ -7,6 +7,13 @@ import Button from './Button';
 export default {
   title: 'ReactComponentLibrary/Button',
   component: Button,
+  decorators: [
+    (Story) => (
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <Story />
+      </div>
+    )
+  ]
 } as ComponentMeta<typeof Button>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -18,6 +25,13 @@ HelloWorld.args = {
   label: 'Hello world!',
   onClick: () => console.log("ok")
 };
+HelloWorld.decorators = [
+  (Story) => (
+    <div style={{marginTop: '50px'}}>
+      <Story />
+    </div>
+  )
+]
 
 export const ClickMe = Template.bind({});
 ClickMe.args = {

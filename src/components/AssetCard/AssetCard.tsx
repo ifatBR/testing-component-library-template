@@ -10,12 +10,18 @@ export interface IAssetCardProps {
   isFolder?: boolean;
   searchTerm?: string;
   UserDownloadIcon?: string;
+  cardStyleAsset?: {[key:string]:string};
+  cardStyleFolder?: {[key:string]:string};
+  cardHoverStyle?: {[key:string]:string};
+  cardImageStyle?: {[key:string]:string};
+  downloadIconStyle?: {[key:string]:string};
+  titleStyle?: {[key:string]:string};
   onAssetClick?(asset: IAsset): void;
   onDownload?(id: string): void;
 }
 
 const AssetCard = (props: IAssetCardProps) => {
-  const { asset, isFolder, searchTerm, UserDownloadIcon, onAssetClick, onDownload } = props;
+  const { asset, isFolder, searchTerm, UserDownloadIcon, cardStyleAsset, cardStyleFolder, cardHoverStyle, cardImageStyle, downloadIconStyle, titleStyle, onAssetClick, onDownload } = props;
 
   const handleAssetClick = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
     e.stopPropagation();
@@ -27,19 +33,22 @@ const AssetCard = (props: IAssetCardProps) => {
   };
 
   return (
-    <AssetCardStyled isFolder={isFolder}>
+    <AssetCardStyled cardStyleAsset={cardStyleAsset} cardStyleFolder={cardStyleFolder} isFolder={isFolder}>
       <StyledAssetCardImage
           onClick={e => handleAssetClick(e)}
-          isFolder={isFolder}
+          cardImageStyle={cardImageStyle}
           src={asset?.thumb?.default?.url}
       />
-      <AssetCardHoverStyled onClick={e => e.stopPropagation()} isFolder={isFolder}>
-          <StyledAssetCardTitleContainer>
+      <AssetCardHoverStyled onClick={e => e.stopPropagation()} cardHoverStyle={cardHoverStyle}>
+          <StyledAssetCardTitleContainer titleStyle={titleStyle}>
               <HighlightedTitle title={asset?.name || ""} highlight={searchTerm}/>
           </StyledAssetCardTitleContainer>
           <Icon
+              className='icon'
               Icon={UserDownloadIcon || IconDownload}
-              onIconClicked={handleDownload} />
+              onIconClicked={handleDownload}
+              iconStyle={{...downloadIconStyle}}
+          />
       </AssetCardHoverStyled>
     </AssetCardStyled>
   );

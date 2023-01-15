@@ -9,7 +9,7 @@ export interface IHighlightedTitleProps {
 const HighlightedTitle = (props: IHighlightedTitleProps) => {
   const { title, highlight } = props;
   // split on highlight term and include term into parts, ignore case
-  const parts = title.split(new RegExp(`(${highlight})`, 'gi'));
+  const parts = title?.split(new RegExp(`(${highlight})`, 'gi'));
 
   return (
     highlight?.length ? 

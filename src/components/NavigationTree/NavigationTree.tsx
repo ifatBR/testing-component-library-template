@@ -9,6 +9,7 @@ export interface INavigationTreeProps {
   treeNodeMarkedStyle?: {[key:string]:string};
   treeNodeNameStyle?: {[key:string]:string};
   treeNodeNameActiveStyle?: {[key:string]:string};
+  toggleIconStyle?: {[key:string]:string};
   UserIconToggleOpen?: string;
   UserIconToggleClosed?: string;
   toggleIconProps?: IIcon;
@@ -24,6 +25,7 @@ const NavigationTree = (props: INavigationTreeProps) => {
     treeNodeMarkedStyle,
     treeNodeNameStyle,
     treeNodeNameActiveStyle,
+    toggleIconStyle,
     UserIconToggleOpen,
     UserIconToggleClosed,
     toggleIconProps,
@@ -44,8 +46,7 @@ const NavigationTree = (props: INavigationTreeProps) => {
     }
   };
 
-  const onToggleClick = (node: ITreeNode) => {
-    if (node.children) return;
+  const onToggle = (node: ITreeNode) => {
     onNodeToggleClick?.(node)
   };
 
@@ -54,7 +55,7 @@ const NavigationTree = (props: INavigationTreeProps) => {
       <NavigationTreeNode 
         treeNode={treeData}
         onNodeClick={onTreeNodeClick}
-        onNodeToggleClick={onToggleClick}
+        onNodeToggle={onToggle}
         currentNodeId={currentNodeId}
         highlightedNodeId={highlightedNodeId}
         treeNodeStyle={treeNodeStyle}
@@ -64,6 +65,7 @@ const NavigationTree = (props: INavigationTreeProps) => {
         UserIconToggleOpen={UserIconToggleOpen}
         UserIconToggleClosed={UserIconToggleClosed}
         toggleIconProps={toggleIconProps}
+        toggleIconStyle={toggleIconStyle}
       />
     </>
   )

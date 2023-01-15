@@ -21,6 +21,7 @@ const asset = {
 
 describe('AssetCard Component', () => {
   test('Render the AssetCard component', () => {
-    render(<AssetCard asset={asset}/>);
+    render (<AssetCard asset={asset} />);
   });
 });
+
