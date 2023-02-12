@@ -27,7 +27,8 @@ fs.writeFile(`${dir}/${name}.test.tsx`, test(name), writeFileErrorHandler);
 fs.writeFile(`${dir}/index.ts`, index(name), writeFileErrorHandler);
 // styled.tsx
 fs.writeFile(`${dir}/styled.tsx`, styled(name), writeFileErrorHandler);
-
+//Create components folder
+fs.mkdirSync(`${dir}/components`);
 
 fs.readFile('./src/components/index.ts', 'utf8', function(err, data) {
     if (err) throw err;

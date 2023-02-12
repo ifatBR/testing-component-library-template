@@ -60,7 +60,6 @@ export interface INodeState {
 }
 
 export interface IIcon {
-    fillColor?: string;
     height?: number;
     width?: number;
 }

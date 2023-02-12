@@ -73,7 +73,7 @@ BasicNavigationTree.args = {
   treeNodeNameStyle: {color: 'darkGrey', border: '1px solid transparent'},
   treeNodeNameActiveStyle: {fontWeight: 'bold', color: 'cadetBlue', borderRadius: '3px', borderColor: '#9fc4c6'},
   treeNodeMarkedStyle: {backgroundColor: '#fff0b3'},
-  toggleIconProps: {fillColor: "cadetBlue", height: 12, width: 12},
+  toggleIconProps: {height: 12, width: 12},
   toggleIconStyle: {
     display: 'flex',    
     alignItems: 'center',

@@ -89,7 +89,7 @@ const NavigationTreeNode = (props: INavigationTreeNodeProps) => {
               {
                 height: TOGGLE_ICON_SIZE.HEIGHT,
                 width: TOGGLE_ICON_SIZE.WIDTH,
-                //If toggleIconProps contains height and width, they will override the ones we use here
+                //If toggleIconProps contains height and width, they will override the default ones
                 ...toggleIconProps
               }
             }

@@ -1,14 +1,11 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as reactIs from 'react-is';
-import * as propTypes from 'prop-types';
+
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import dts from "rollup-plugin-dts";
 import svgr from "@svgr/rollup";
-
+import babel from "@rollup/plugin-babel";
 const packageJson = require("./package.json");
 
 export default [
@@ -35,7 +32,8 @@ export default [
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
       postcss(),
-      svgr({ native: true })
+      svgr(),
+      babel({extensions: [ '.js', '.jsx', '.ts', '.tsx' ]}), //!The extensions allow the bubble config + optional-chaining to  work
     ],
   },
   {

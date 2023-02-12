@@ -5,6 +5,7 @@ type IconContainerStyledProps = {
     width?: number;
     iconFillColor?: string
     iconStyle?: {[key: string]: string}
+    iconPathStyle?: {[key: string]: string}
 };
 
 export const IconContainerStyled = styled.div<IconContainerStyledProps>`
@@ -14,7 +15,7 @@ export const IconContainerStyled = styled.div<IconContainerStyledProps>`
         max-height: ${props => `${props.height}px`};
         max-width: ${props => `${props.width}px`};
         path {
-            fill: ${props => props.iconFillColor};
+            ${props => props.iconPathStyle}
         }
     }
     ${props => props.iconStyle}
